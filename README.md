@@ -14,24 +14,18 @@ NOTE: If file name contains "invalid" parsing of it is expected to fail.
 git clone git@github.com:postatum/raml-parsers-test-js.git
 cd raml-parsers-test-js
 npm install
-node src/index.js -parser PARSER_NAME
+node src/index.js --parser PARSER_NAME
 ```
 
 ## Options
 
-Help:
-
-```sh
-node src/index.js -h
-```
-
 Parser (defaults to `jumpscale`):
 ```sh
-node src/index.js -parser TODO_ADD_PARSER_NAMES_HERE
+node src/index.js --parser ramlfications/raml1parser
 ```
 
 Verbose output (prints errors) (defaults to `false`):
 
 ```sh
-node src/index.js -verbose
+node src/index.js --verbose
 ```
