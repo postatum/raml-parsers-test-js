@@ -1,10 +1,12 @@
 function ramlficationsParse (fpath) {
-  console.log('TODO')
+  // TODO
+  console.log(fpath)
 
 }
 
 function raml1parserParse (fpath) {
-  console.log('TODO')
+  // TODO
+  console.log(fpath)
 
 }
 

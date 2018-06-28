@@ -17,20 +17,22 @@ function main () {
     return
   }
 
-  const examplesFolder = utils.cloneTckRepo()
-  const fileList = utils.listRamls(examplesFolder)
-  _.forEach(fileList, (fpath) => {
-    console.log('> Parsing ', fpath, ': ')
-    try {
-      parserFunc(fpath)
-      console.log('OK')
-    } catch (e) {
-      console.log('FAIL')
-      if (verbose) {
-        console.log(e)
-      }
-    }
-  })
+  return utils.cloneTckRepo()
+    .then((exDir) => {
+      const fileList = utils.listRamls(exDir)
+      _.forEach(fileList, (fpath) => {
+        console.log('> Parsing ', fpath, ': ')
+        try {
+          parserFunc(fpath)
+          console.log('OK')
+        } catch (e) {
+          console.log('FAIL')
+          if (verbose) {
+            console.log(e)
+          }
+        }
+      })
+    })
 }
 
 main()

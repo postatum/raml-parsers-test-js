@@ -20,7 +20,9 @@
   "homepage": "https://github.com/postatum/raml-parsers-test-js#readme",
   "dependencies": {
     "lodash": "^4.17.10",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "rimraf": "^2.6.2",
+    "walk": "^2.3.13"
   },
   "devDependencies": {
     "eslint": "^5.0.1",
