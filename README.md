@@ -19,7 +19,7 @@ node src/index.js --parser PARSER_NAME
 
 ## Options
 
-Parser (defaults to `jumpscale`):
+Parser:
 ```sh
 node src/index.js --parser raml1parser
 ```
