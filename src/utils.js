@@ -1,24 +1,37 @@
 const os = require('os')
 const path = require('path')
-const Git = require('nodegit')
+const { execSync } = require('child_process')
 const rimraf = require('rimraf')
 const walk = require('walk')
 
 function cloneTckRepo () {
-  const exDir = path.join(os.tmpdir(), 'raml-tck')
-  rimraf(exDir)
-  console.log('Cloning raml-tck to ', exDir)
-  return Git.Clone('git@github.com:raml-org/raml-tck.git', os.tmpdir())
-    .then(() => {
-      return exDir
-    })
+  const repoDir = path.join(os.tmpdir(), 'raml-tck')
+  rimraf.sync(repoDir)
+  console.log('Cloning raml-tck to', repoDir)
+  execSync('git clone git@github.com:raml-org/raml-tck.git ' + repoDir)
+  return path.join(repoDir, 'tests', 'raml-1.0')
 }
 
 function listRamls (fpath) {
-  return walk.walkSync(fpath)
+  let files = []
+  const options = {
+    listeners: {
+      file: (root, fileStats, next) => {
+        files.push(path.join(root, fileStats.name))
+        next()
+      }
+    }
+  }
+  walk.walkSync(fpath, options)
+  return files
+}
+
+function shouldFail (fpath) {
+  return fpath.indexOf('invalid') >= 0
 }
 
 module.exports = {
-  'cloneTckRepo': cloneTckRepo,
-  'listRamls': listRamls
+  cloneTckRepo: cloneTckRepo,
+  listRamls: listRamls,
+  shouldFail: shouldFail
 }
