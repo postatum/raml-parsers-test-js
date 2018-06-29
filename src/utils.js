@@ -17,7 +17,9 @@ function listRamls (fpath) {
   const options = {
     listeners: {
       file: (root, fileStats, next) => {
-        files.push(path.join(root, fileStats.name))
+        if (fileStats.name.indexOf('.raml') >= 0) {
+          files.push(path.join(root, fileStats.name))
+        }
         next()
       }
     }

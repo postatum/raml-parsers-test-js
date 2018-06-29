@@ -21,7 +21,7 @@ node src/index.js --parser PARSER_NAME
 
 Parser (defaults to `jumpscale`):
 ```sh
-node src/index.js --parser ramlfications/raml1parser
+node src/index.js --parser raml1parser
 ```
 
 Verbose output (prints errors) (defaults to `false`):

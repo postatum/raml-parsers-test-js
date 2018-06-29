@@ -4,7 +4,6 @@ const parsers = require('./parsers')
 const utils = require('./utils')
 
 const PARSERS = {
-  'ramlfications': parsers.ramlficationsParse,
   'raml1parser': parsers.raml1parserParse
 }
 
@@ -20,7 +19,8 @@ function main () {
   const exDir = utils.cloneTckRepo()
   const fileList = utils.listRamls(exDir)
   _.forEach(fileList, (fpath) => {
-    console.log('> Parsing ' + fpath + ': ')
+    // Log like this to not add newline at the end
+    process.stdout.write('> Parsing ' + fpath + ': ')
     let success = true
     let error
     try {

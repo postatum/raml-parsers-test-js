@@ -1,14 +1,9 @@
-function ramlficationsParse (fpath) {
-  // TODO
-
-}
+const raml = require('raml-1-parser')
 
 function raml1parserParse (fpath) {
-  // TODO
-
+  raml.loadSync(fpath)
 }
 
 module.exports = {
-  ramlficationsParse: ramlficationsParse,
   raml1parserParse: raml1parserParse
 }
