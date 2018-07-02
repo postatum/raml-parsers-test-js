@@ -1,6 +1,6 @@
 ## About
 
-Simple test of few RAML Go parsers. Tests simply try to parse a set of examples and report if parser returned an error.
+Simple test of few RAML JS parsers. Tests simply try to parse a set of examples and report if parser returned an error.
 
 A fine collection of RAML files can be composed each containing one/few RAML features to test those in isolation.
 
