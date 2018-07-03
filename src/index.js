@@ -18,6 +18,7 @@ function main () {
 
   const exDir = utils.cloneTckRepo()
   const fileList = utils.listRamls(exDir)
+  let passed = 0
   _.forEach(fileList, (fpath) => {
     // Log like this to not add newline at the end
     process.stdout.write('> Parsing ' + fpath + ': ')
@@ -33,6 +34,7 @@ function main () {
       success = !success
     }
     if (success) {
+      passed++
       console.log('OK')
     } else {
       console.log('FAIL')
@@ -41,6 +43,7 @@ function main () {
       }
     }
   })
+  console.log('\nPassed/Total:', passed, '/', fileList.length)
 }
 
 main()
