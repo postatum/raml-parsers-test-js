@@ -32,7 +32,7 @@ function main () {
     }
     if (utils.shouldFail(fpath)) {
       success = !success
-      error = 'Expected to fail'
+      error = 'Parsing expected to fail but succeeded'
     }
     if (success) {
       passed++
