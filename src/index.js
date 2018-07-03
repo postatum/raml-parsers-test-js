@@ -32,6 +32,7 @@ function main () {
     }
     if (utils.shouldFail(fpath)) {
       success = !success
+      error = 'Expected to fail'
     }
     if (success) {
       passed++
