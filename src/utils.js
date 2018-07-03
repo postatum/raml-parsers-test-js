@@ -29,7 +29,7 @@ function listRamls (fpath) {
 }
 
 function shouldFail (fpath) {
-  return fpath.indexOf('invalid') >= 0
+  return fpath.toLowerCase().indexOf('invalid') >= 0
 }
 
 module.exports = {
