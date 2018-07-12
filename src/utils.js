@@ -8,7 +8,9 @@ function cloneTckRepo () {
   const repoDir = path.join(os.tmpdir(), 'raml-tck')
   rimraf.sync(repoDir)
   console.log('Cloning raml-tck to', repoDir)
-  execSync('git clone git@github.com:raml-org/raml-tck.git ' + repoDir)
+  execSync(
+    'git clone -b rename-cleanup git@github.com:raml-org/raml-tck.git ' +
+    repoDir)
   return path.join(repoDir, 'tests', 'raml-1.0')
 }
 
