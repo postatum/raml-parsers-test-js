@@ -22,8 +22,7 @@
     "lodash": "^4.17.10",
     "minimist": "^1.2.0",
     "raml-1-parser": "^1.1.44",
-    "rimraf": "^2.6.2",
-    "walk": "^2.3.13"
+    "rimraf": "^2.6.2"
   },
   "devDependencies": {
     "eslint": "^5.0.1",

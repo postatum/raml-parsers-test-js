@@ -12,7 +12,7 @@ function main () {
   const verbose = argv.verbose || false
   const parserFunc = PARSERS[argv.parser]
   if (parserFunc === undefined) {
-    console.log('Not supported parser:', argv.parser)
+    console.log(`Not supported parser: ${argv.parser}`)
     return
   }
 
@@ -21,7 +21,7 @@ function main () {
   let passed = 0
   _.forEach(fileList, (fpath) => {
     // Log like this to not add newline at the end
-    process.stdout.write('> Parsing ' + fpath + ': ')
+    process.stdout.write(`> Parsing ${fpath}: `)
     let success = true
     let error
     try {
@@ -44,7 +44,7 @@ function main () {
       }
     }
   })
-  console.log('\nPassed/Total:', passed, '/', fileList.length)
+  console.log(`\nPassed/Total: ${passed}/${fileList.length}`)
 }
 
 main()

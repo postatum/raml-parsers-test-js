@@ -1,8 +1,8 @@
 const os = require('os')
 const path = require('path')
+const fs = require('fs')
 const { execSync } = require('child_process')
 const rimraf = require('rimraf')
-const walk = require('walk')
 
 function cloneTckRepo () {
   const repoDir = path.join(os.tmpdir(), 'raml-tck')
@@ -14,24 +14,16 @@ function cloneTckRepo () {
   return path.join(repoDir, 'tests', 'raml-1.0')
 }
 
-function listRamls (fpath) {
-  let files = []
-  const options = {
-    listeners: {
-      file: (root, fileStats, next) => {
-        if (fileStats.name.indexOf('.raml') >= 0) {
-          files.push(path.join(root, fileStats.name))
-        }
-        next()
-      }
-    }
-  }
-  walk.walkSync(fpath, options)
-  return files
+function listRamls (foldPath) {
+  const manifestPath = path.join(foldPath, 'manifest.json')
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+  return manifest.filePaths.map((filePath) => {
+    return path.join(foldPath, filePath)
+  })
 }
 
 function shouldFail (fpath) {
-  return fpath.toLowerCase().indexOf('invalid') >= 0
+  return fpath.toLowerCase().includes('invalid')
 }
 
 module.exports = {
