@@ -21,7 +21,7 @@ $ node src/index.js --parser PARSER_NAME
 
 Parser:
 ```sh
-$ node src/index.js --parser raml1parser
+$ node src/index.js --parser raml1parser/amf
 ```
 
 Verbose output (prints errors) (defaults to `false`):

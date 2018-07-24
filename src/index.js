@@ -1,13 +1,13 @@
 const parseArgs = require('minimist')
-const _ = require('lodash')
 const parsers = require('./parsers')
 const utils = require('./utils')
 
 const PARSERS = {
-  'raml1parser': parsers.raml1parserParse
+  'raml1parser': parsers.raml1parserParse,
+  'amf': parsers.amfParse
 }
 
-function main () {
+async function main () {
   const argv = parseArgs(process.argv.slice(2))
   const verbose = argv.verbose || false
   const parserFunc = PARSERS[argv.parser]
@@ -19,13 +19,15 @@ function main () {
   const exDir = utils.cloneTckRepo()
   const fileList = utils.listRamls(exDir)
   let passed = 0
-  _.forEach(fileList, (fpath) => {
-    // Log like this to not add newline at the end
-    process.stdout.write(`> Parsing ${fpath}: `)
+
+  for (let i = 0; i < fileList.length; i++) {
+    let fpath = fileList[i]
     let success = true
     let error
+    // Log like this to not add newline at the end
+    process.stdout.write(`> Parsing ${fpath}: `)
     try {
-      parserFunc(fpath)
+      await parserFunc(fpath)
     } catch (e) {
       success = false
       error = e
@@ -43,7 +45,7 @@ function main () {
         console.log(error)
       }
     }
-  })
+  }
   console.log(`\nPassed/Total: ${passed}/${fileList.length}`)
 }
 

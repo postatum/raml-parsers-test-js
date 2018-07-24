@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/postatum/raml-parsers-test-js#readme",
   "dependencies": {
-    "lodash": "^4.17.10",
+    "amf-client-js": "^1.7.1",
     "minimist": "^1.2.0",
     "raml-1-parser": "^1.1.44",
     "rimraf": "^2.6.2"
