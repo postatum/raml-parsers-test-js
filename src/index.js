@@ -36,13 +36,14 @@ async function main () {
       error = e
     }
     const shouldFail = utils.shouldFail(fpath)
-    shouldFail ? count.invalid.total++ : count.valid.total++
+    countKey = shouldFail ? "invalid" : "valid"
+    count[countKey].total++
     if (shouldFail) {
       success = !success
       error = 'Parsing expected to fail but succeeded'
     }
     if (success) {
-      shouldFail ? count.invalid.passed++ : count.valid.passed++
+      count[countKey].passed++
       console.log('OK')
     } else {
       console.log('FAIL')
