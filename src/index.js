@@ -18,7 +18,10 @@ async function main () {
 
   const exDir = utils.cloneTckRepo()
   const fileList = utils.listRamls(exDir)
-  let passed = 0
+  let count = {
+    valid: {passed: 0, total: 0},
+    invalid: {passed: 0, total: 0}
+  }
 
   for (let i = 0; i < fileList.length; i++) {
     let fpath = fileList[i]
@@ -32,12 +35,14 @@ async function main () {
       success = false
       error = e
     }
-    if (utils.shouldFail(fpath)) {
+    const shouldFail = utils.shouldFail(fpath)
+    shouldFail ? count.invalid.total++ : count.valid.total++
+    if (shouldFail) {
       success = !success
       error = 'Parsing expected to fail but succeeded'
     }
     if (success) {
-      passed++
+      shouldFail ? count.invalid.passed++ : count.valid.passed++
       console.log('OK')
     } else {
       console.log('FAIL')
@@ -46,7 +51,10 @@ async function main () {
       }
     }
   }
-  console.log(`\nPassed/Total: ${passed}/${fileList.length}`)
+  console.log(
+    `\nPassed/Total: ${count.invalid.passed + count.valid.passed}/${fileList.length} ` +
+    `(valid: ${count.valid.passed}/${count.valid.total}, ` +
+    `invalid: ${count.invalid.passed}/${count.invalid.total})`)
 }
 
 main()
