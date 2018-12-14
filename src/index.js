@@ -4,7 +4,8 @@ const utils = require('./utils')
 
 const PARSERS = {
   'raml1parser': parsers.raml1parserParse,
-  'amf': parsers.amfParse
+  'amf': parsers.amfParse,
+  'webapi': parsers.webapiParserParse
 }
 
 async function main () {
@@ -36,7 +37,7 @@ async function main () {
       error = e
     }
     const shouldFail = utils.shouldFail(fpath)
-    countKey = shouldFail ? "invalid" : "valid"
+    let countKey = shouldFail ? 'invalid' : 'valid'
     count[countKey].total++
     if (shouldFail) {
       success = !success
