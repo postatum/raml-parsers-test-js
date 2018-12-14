@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/postatum/raml-parsers-test-js#readme",
   "dependencies": {
-    "amf-client-js": "^1.7.1",
-    "webapi-parser": "^0.0.1",
+    "amf-client-js": "^3.1.0",
     "minimist": "^1.2.0",
     "raml-1-parser": "^1.1.44",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "webapi-parser": "^0.0.1"
   },
   "devDependencies": {
     "eslint": "^5.0.1",
