@@ -2,10 +2,6 @@ const raml = require('raml-1-parser')
 const amf = require('amf-client-js')
 const wap = require('webapi-parser').WebApiParser
 
-amf.plugins.document.WebApi.register()
-amf.plugins.document.Vocabularies.register()
-amf.plugins.features.AMFValidation.register()
-
 async function raml1parserParse (fpath) {
   const res = raml.loadSync(fpath)
   if (res.errors.length > 0) {
@@ -15,7 +11,7 @@ async function raml1parserParse (fpath) {
 }
 
 async function amfParse (fpath) {
-  await amf.Core.init()
+  await amf.AMF.init()
   const ramlParser = amf.AMF.raml10Parser()
   const model = await ramlParser.parseFileAsync(`file://${fpath}`)
   const report = await amf.AMF.validate(
