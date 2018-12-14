@@ -15,12 +15,12 @@ async function raml1parserParse (fpath) {
 }
 
 async function amfParse (fpath) {
-  const ramlParser = amf.AMF.raml10Parser()
   await amf.Core.init()
-  const baseUnit = await ramlParser.parseFileAsync(`file://${fpath}`)
-  const validations = await amf.AMF.validate(
-    baseUnit, amf.ProfileNames.RAML, amf.ProfileNames.AMFStyle)
-  validations.results.map(res => {
+  const ramlParser = amf.AMF.raml10Parser()
+  const model = await ramlParser.parseFileAsync(`file://${fpath}`)
+  const report = await amf.AMF.validate(
+    model, amf.ProfileNames.RAML10, amf.MessageStyles.RAML)
+  report.results.map(res => {
     if (!res.conforms && res.level.toLowerCase() === 'violation') {
       throw new Error(res.message)
     }
